@@ -27,4 +27,10 @@ public class Loader : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void Learn()
+    {
+        SceneManager.LoadScene(2);
+    }
+
 }
