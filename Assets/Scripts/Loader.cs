@@ -16,6 +16,7 @@ public class Loader : MonoBehaviour
     {
         MainMenu,
         LevelSelector,
+        Learn,
     }
 
     public void Play()
