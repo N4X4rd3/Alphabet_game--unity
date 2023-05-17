@@ -1,24 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 
 public class LetterDataTransfer : MonoBehaviour
 {
-
-    [SerializeField] public string Letter;
-    [SerializeField] TextMeshProUGUI m_Object;
-    // Start is called before the first frame update
+    public string Letter;
+    [SerializeField] TextMeshProUGUI LetterButton;
+    [SerializeField] TextMeshProUGUI Learn;
+    [SerializeField] TextMeshProUGUI Draw;
+    [SerializeField] TextMeshProUGUI Find;
+    [SerializeField] GameObject LetterScreen;
     void Start()
     {
-        m_Object.text = Letter;
+        LetterButton.text = Letter;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void TaskOnClick()
     {
-        
+        Debug.Log("Ты нажал на кнопку");
+        LetterScreen.SetActive(true);
+        Learn.text = Letter + "_Learn";
+        Draw.text = Letter + "_Draw";
+        Find.text = Letter + "_Find";
+        LetterState.Letter = Letter;
     }
 }
