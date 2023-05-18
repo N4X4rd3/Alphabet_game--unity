@@ -12,13 +12,6 @@ public class Loader : MonoBehaviour
         Instance = this;
     }
 
-    public enum Scenes
-    {
-        MainMenu,
-        LevelSelector,
-        Learn,
-    }
-
     public void Play()
     {
         SceneManager.LoadScene(1);
@@ -34,4 +27,12 @@ public class Loader : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void Draw()
+    {
+        SceneManager.LoadScene(4);
+    }
+    public void Find()
+    {
+        SceneManager.LoadScene(3);
+    }
 }
