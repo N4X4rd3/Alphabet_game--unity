@@ -12,19 +12,31 @@ public class LearnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SelectQuestion
+        SelectQuestion();
     }
 
     // Update is called once per frame
     void SelectQuestion()
     {
-        int val = Random.Range(0,questions.Count)
-        selectedQuestion = questions[val]
+        int val = Random.Range(0, questions.Count);
+        selectedQuestion = questions[val];
     }
 
-    void Answer()
+    void Answer(string answered)
     {
+        bool correctAns = false;
         
+        if(answered == selectedQuestion.correctAns)
+        {
+            //Yes
+            correctAns= true;
+        }    
+        else
+        {
+            //No
+        }
+
+        Invoke("SelectQuestion", 0.4f);
     }
 }
 

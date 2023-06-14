@@ -13,4 +13,5 @@ public class Learn : MonoBehaviour
         Debug.Log(displayLetter);
     }
 
+    Load(5)
 }
