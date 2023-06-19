@@ -1,17 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LearnManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<Question> questions;
+    [SerializeField] private LearnUI learnUI;
+    [SerializeField] private LearnDataScriptable learnData;
 
+    private List<Question> questions;
     private Question selectedQuestion;
 
     // Start is called before the first frame update
     void Start()
     {
+        questions = learnData.questions;
+
         SelectQuestion();
     }
 
@@ -20,9 +24,11 @@ public class LearnManager : MonoBehaviour
     {
         int val = Random.Range(0, questions.Count);
         selectedQuestion = questions[val];
+
+        learnUI.SetQuestion(selectedQuestion);
     }
 
-    void Answer(string answered)
+    public bool Answer(string answered)
     {
         bool correctAns = false;
         
@@ -37,6 +43,8 @@ public class LearnManager : MonoBehaviour
         }
 
         Invoke("SelectQuestion", 0.4f);
+
+        return correctAns;
     }
 }
 

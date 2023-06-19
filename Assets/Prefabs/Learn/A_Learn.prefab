@@ -44,14 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f1fd2068459964aa18e1b46710af81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questions:
-  - questionInfo: 123
-    questionType: 0
-    questionImg: {fileID: 0}
-    questionClip: {fileID: 0}
-    options:
-    - 23
-    - 124
-    - 23
-    - 41
-    correctAns: 41
+  learnUI: {fileID: 0}

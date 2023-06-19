@@ -17,12 +17,16 @@ public class LearnUI : MonoBehaviour
     private bool answered;
     private float audioLenght;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        for (int i = 0; i < options.Count; i++)
+        {
+            Button localBtn = options[i];
+            localBtn.onClick.AddListener(() => OnClick(localBtn));
+        }
     }
 
-    public void SetQuestion()
+    public void SetQuestion(Question question)
     {
         this.question = question;
 
@@ -40,9 +44,11 @@ public class LearnUI : MonoBehaviour
                 break;
             case QuestionType.AUDIO:
                 ImageHolder();
-                questionAudio.transform.parent.gameObject.SetActive(true);
+                questionAudio.transform.gameObject.SetActive(true);
 
                 audioLenght = question.questionClip.length;
+
+                StartCoroutine(PlayAudio());
 
                 break;
         }
@@ -51,12 +57,14 @@ public class LearnUI : MonoBehaviour
 
         List<string> answerList = ShuffleList.ShuffleListItems<string>(question.options);
 
-        for(int i = 0; i < options.Count; i++)
+        for (int i = 0; i < options.Count; i++)
         {
             options[i].GetComponentInChildren<Text>().text = answerList[i];
             options[i].name = answerList[i];
-            options[i].image.color = NormalCol;
+            //options[i].image.color = NormalCol;
         }
+
+        answered = false;
     }
 
     IEnumerator PlayAudio()
@@ -84,8 +92,21 @@ public class LearnUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void OnClick(Button btn)
     {
-        
+        if (!answered)
+        { 
+            answered=true;
+            bool val = LearnManager.Answer(btn.name);
+
+            if (val)
+            {
+                btn.image.color = correctCol;
+            }
+            else
+            {
+                btn.image.color = wrongCol;
+            }
+        }
     }
 }
